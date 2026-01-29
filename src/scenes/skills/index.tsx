@@ -1,17 +1,19 @@
 import HText from "@/common/HText";
 import { SelectedPage, SkillType } from "@/common/types";
 import { motion } from "framer-motion";
+import { useTheme } from "@/context/ThemeContext";
 import { FaDocker } from "react-icons/fa";
 import { FaGitlab, FaReact } from "react-icons/fa6";
 import { IoLogoFirebase } from "react-icons/io5";
 import {
   SiAxios,
-  SiFastify,
   SiMongodb,
   SiNestjs,
   SiTypescript,
+  SiMui,
+  SiPostgresql,
 } from "react-icons/si";
-import { TbBrandJavascript, TbBrandNextjs, TbBrandRedux } from "react-icons/tb";
+import { TbBrandJavascript, TbBrandNextjs } from "react-icons/tb";
 import Skill from "./Skill";
 
 const skillSet1: Array<SkillType> = [
@@ -28,42 +30,42 @@ const skillSet1: Array<SkillType> = [
     title: "React",
   },
   {
-    icon: <FaGitlab className="h-10 w-10" />,
-    title: "Git",
+    icon: <TbBrandNextjs className="h-10 w-10" />,
+    title: "Next.js",
   },
   {
     icon: <SiNestjs className="h-10 w-10" />,
-    title: "Nestjs",
+    title: "NestJS",
   },
   {
     icon: <SiAxios className="h-10 w-10" />,
-    title: "Axios",
+    title: "REST APIs",
   },
 ];
 const skillSet2: Array<SkillType> = [
+  {
+    icon: <SiMongodb className="h-10 w-10" />,
+    title: "MongoDB",
+  },
+  {
+    icon: <SiPostgresql className="h-10 w-10" />,
+    title: "PostgreSQL",
+  },
+  {
+    icon: <SiMui className="h-10 w-10" />,
+    title: "Material UI",
+  },
+  {
+    icon: <FaGitlab className="h-10 w-10" />,
+    title: "Git",
+  },
   {
     icon: <FaDocker className="h-10 w-10" />,
     title: "Docker",
   },
   {
-    icon: <SiMongodb className="h-10 w-10" />,
-    title: "Mongodb",
-  },
-  {
     icon: <IoLogoFirebase className="h-10 w-10" />,
     title: "Firebase",
-  },
-  {
-    icon: <SiFastify className="h-10 w-10" />,
-    title: "Fastify",
-  },
-  {
-    icon: <TbBrandNextjs className="h-10 w-10" />,
-    title: "Nextjs",
-  },
-  {
-    icon: <TbBrandRedux className="h-10 w-10" />,
-    title: "Redux",
   },
 ];
 const container = {
@@ -73,8 +75,9 @@ const container = {
 type Props = { setSelectedPage: (value: SelectedPage) => void };
 
 function Skills({ setSelectedPage }: Props) {
+  const { theme } = useTheme();
   return (
-    <section id="skills" className="mx-auto min-h-fit w-5/6 py-20">
+    <section id="skills" className={`mx-auto min-h-fit w-5/6 py-20 ${theme === "dark" ? "" : ""}`}>
       <motion.div onViewportEnter={() => setSelectedPage(SelectedPage.Skills)}>
         {/* Header */}
         <motion.div

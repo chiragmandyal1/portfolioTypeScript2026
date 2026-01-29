@@ -5,8 +5,15 @@ import Home from "@/scenes/home";
 import Navbar from "@/scenes/navbar";
 import OurClasses from "@/scenes/myProjects";
 import { useEffect, useState } from "react";
+import { ThemeProvider } from "@/context/ThemeContext";
+import { SearchProvider } from "@/context/SearchContext";
+import ScrollToTop from "@/common/ScrollToTop";
+import Experience from "@/scenes/experience";
+import Testimonials from "@/scenes/testimonials";
+import Contact from "@/scenes/contact";
+import Education from "@/scenes/education";
 
-function App() {
+function AppContent() {
   const [selectedPage, setSelectedPage] = useState<SelectedPage>(
     SelectedPage.AboutMe
   );
@@ -26,7 +33,7 @@ function App() {
 
   return (
     <>
-      <p className="app">
+      <div className="app">
         <Navbar
           isTopOfPage={isTopOfPage}
           selectedPage={selectedPage}
@@ -34,10 +41,27 @@ function App() {
         />
         <Home setSelectedPage={setSelectedPage} />
         <Benefits setSelectedPage={setSelectedPage} />
+        <Education setSelectedPage={setSelectedPage} />
+        <Experience setSelectedPage={setSelectedPage} />
         <OurClasses setSelectedPage={setSelectedPage} />
+        {false &&
+          <Testimonials setSelectedPage={setSelectedPage} />
+        }
+        <Contact />
         <Footer />
-      </p>
+        <ScrollToTop />
+      </div>
     </>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <SearchProvider>
+        <AppContent />
+      </SearchProvider>
+    </ThemeProvider>
   );
 }
 

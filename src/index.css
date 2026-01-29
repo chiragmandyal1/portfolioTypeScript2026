@@ -12,3 +12,51 @@ body,
   width: 100%;
   font-family: "DM Sans" sans-serif;
 }
+
+/* Light mode styles */
+body {
+  @apply bg-gray-50 text-gray-900;
+}
+
+/* Dark mode styles */
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  @apply bg-gray-900 text-white;
+}
+
+html.dark input,
+html.dark textarea {
+  @apply border-gray-600 bg-gray-700 text-white;
+}
+
+/* Smooth scroll animation */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+html.dark ::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #fbbf24;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f59e0b;
+}

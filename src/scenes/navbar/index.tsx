@@ -1,9 +1,11 @@
-import Logo from "@/assets/Logo.png";
 import { SelectedPage } from "@/common/types";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import Link from "./Link";
+import ThemeToggle from "@/common/ThemeToggle";
+import SearchBar from "@/common/SearchBar";
+import { useTheme } from "@/context/ThemeContext";
 
 type Props = {
   isTopOfPage: boolean;
@@ -15,18 +17,30 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
   const flexBetween = "flex items-center justify-between";
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
   const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
-  const navbarBackground = isTopOfPage ? "" : "bg-primary-100 drop-shadow";
+  const { theme } = useTheme();
+  const navbarBackground = isTopOfPage
+    ? ""
+    : theme === "dark"
+      ? "bg-gray-900 drop-shadow-lg"
+      : "bg-white/95 backdrop-blur-sm drop-shadow-lg border-b border-blue-200";
   return (
-    <nav>
+    <nav className="sticky top-0 z-30 w-full transition-all duration-300">
       {/* parent box of the navbar*/}
       <div
-        className={`${navbarBackground} ${flexBetween} fixed top-0 z-30 w-full py-6`}
+        className={`${navbarBackground} ${flexBetween} w-full py-6 transition-colors duration-300`}
       >
         {/* box that contains both the logo and the other options of the navbar*/}
         <div className={`${flexBetween} mx-auto w-5/6`}>
           <div className={`${flexBetween} w-full gap-16`}>
             {/*left logo side of the navbar*/}
-            <img className="h-15 w-80" alt="logo" src={Logo}></img>
+            <div className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity">
+              <span className="text-2xl font-bold text-yellow-400">&lt;</span>
+              <div>
+                <h1 className="text-lg font-bold leading-none">CHIRAG</h1>
+                <p className="text-xs font-semibold text-yellow-400">MANDYAL</p>
+              </div>
+              <span className="text-2xl font-bold text-yellow-400">/&gt;</span>
+            </div>
             {/*Right other side of the navbar*/}
             {isAboveMediumScreens ? (
               <div className={`${flexBetween} w-full`}>
@@ -51,6 +65,8 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
                     selectedPage={selectedPage}
                     setSelectedPage={setSelectedPage}
                   />
+                  <SearchBar />
+                  <ThemeToggle />
                 </div>
               </div>
             ) : (
