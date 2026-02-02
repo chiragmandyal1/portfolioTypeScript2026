@@ -26,8 +26,8 @@ export default function ContactForm() {
     const onSubmit = async (data: ContactFormData) => {
         setIsSubmitting(true);
         try {
-            // Using FormSubmit.co as a free service for form submissions
-            await axios.post("https://formspree.io/f/xyzabcde", {
+            // Using Formspree service for form submissions
+            await axios.post(import.meta.env.VITE_FORMSPREE_ENDPOINT, {
                 name: data.name,
                 email: data.email,
                 subject: data.subject,
