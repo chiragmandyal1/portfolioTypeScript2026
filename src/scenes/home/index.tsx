@@ -1,107 +1,150 @@
-import HomePageGraphic from "@/assets/HomePageGraphic.png";
-import resumePdf from "@/assets/resumePdf/chiragJsTs.pdf";
+import resumePdf from "@/assets/resumePdf/Chirag_Mandyal_Resume.pdf";
 import ActionButton from "@/common/ActionButton";
 import { SelectedPage } from "@/common/types";
-import useMediaQuery from "@/hooks/useMediaQuery";
 import { motion } from "framer-motion";
-import { useTheme } from "@/context/ThemeContext";
 
-type Props = {
-  setSelectedPage: (value: SelectedPage) => void;
-};
+const stats = [
+  { value: "3+", label: "years experience" },
+  { value: "100K+", label: "devices tracked" },
+  { value: "64K+", label: "active links" },
+  { value: "241", label: "enterprise clients" },
+];
 
-const Home = ({ setSelectedPage }: Props) => {
-  const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
-  const { theme } = useTheme();
-
+const Home = ({ setSelectedPage }: { setSelectedPage: (value: SelectedPage) => void }) => {
   return (
-    <section
-      id="aboutme"
-      className={`gap-16 py-10 md:h-full md:pb-0 ${theme === "dark" ? "bg-gray-900" : "bg-gradient-to-br from-gray-50 to-blue-50"
-        }`}
-    >
-      {/* Image and main header */}
+    <section id="aboutme" className="bg-grid w-full pb-24 pt-28 md:pt-36">
       <motion.div
-        className="mx-auto w-5/6 items-center justify-center md:flex md:h-5/6"
+        className="mx-auto flex w-5/6 max-w-6xl flex-col items-center gap-14 md:flex-row md:gap-10"
         onViewportEnter={() => setSelectedPage(SelectedPage.AboutMe)}
       >
-        {/* Main Header */}
-        <div className="z-10 mt-32 md:basis-3/5">
-          {/* Logo/Branding */}
+        {/* Intro */}
+        <div className="md:basis-3/5">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="mb-8"
           >
-            <div className="flex items-center gap-3">
-              <span className="text-4xl font-bold text-yellow-400">&lt;</span>
-              <div>
-                <h1 className="text-3xl font-bold leading-tight">CHIRAG</h1>
-                <p className="text-xs font-bold text-yellow-400 tracking-widest">FULL STACK DEVELOPER</p>
-              </div>
-              <span className="text-4xl font-bold text-yellow-400">/&gt;</span>
-            </div>
+            <p className="mb-4 inline-block rounded-full border border-amber-500/40 bg-amber-500/10 px-4 py-1 font-mono text-xs font-medium tracking-wide text-amber-700 dark:text-amber-300">
+              Full Stack Developer — React · NestJS · TypeScript
+            </p>
+            <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-zinc-900 dark:text-white sm:text-5xl">
+              Hi, I'm Chirag.
+              <br />
+              I build{" "}
+              <span className="text-amber-600 dark:text-amber-400">
+                data-intensive
+              </span>{" "}
+              systems that stay up.
+            </h1>
           </motion.div>
 
-          {/* Headings */}
-          <motion.div
-            className=""
+          <motion.p
+            className="mt-6 max-w-xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.5 }}
+            transition={{ delay: 0.1, duration: 0.5 }}
             variants={{
-              hidden: { opacity: 0, x: -50 },
+              hidden: { opacity: 0, x: -40 },
               visible: { opacity: 1, x: 0 },
             }}
           >
-            <div className="relative">
-              {/* Removed purple HomePageText image that was overlapping */}
-            </div>
-            <p className=" text-lg ">
-              Full Stack Developer with nearly 4 years of experience building scalable, data-driven web applications using JavaScript and TypeScript. Experienced in React, Next.js, Node.js, and NestJS, with strong ownership of both frontend and backend systems. Currently managing a large-scale device monitoring platform handling 100K+ devices. Proven at modernising legacy systems and delivering reliable solutions in fast-paced startup environments.
-            </p>
-          </motion.div>
+            Sole developer of a satellite-network monitoring platform — real-time
+            NOC dashboards, dual-database telemetry, and role-based access for
+            enterprise clients in banking, telecom, and defense.
+          </motion.p>
+
           {/* Actions */}
           <motion.div
-            className="mt-8 flex items-center gap-8 md:justify-start"
+            className="mt-8 flex items-center gap-5"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
             transition={{ delay: 0.2, duration: 0.5 }}
             variants={{
-              hidden: { opacity: 0, x: -50 },
+              hidden: { opacity: 0, x: -40 },
               visible: { opacity: 1, x: 0 },
             }}
           >
             <ActionButton setSelectedPage={setSelectedPage}>
-              Contact info
+              Contact me
             </ActionButton>
-            <a href={resumePdf} download>
-              <button className={`rounded-md px-10 py-2 font-semibold transition-all shadow-md hover:shadow-lg ${theme === "dark"
-                ? "bg-gray-700 text-white hover:bg-gray-600"
-                : "bg-white border-2 border-blue-500 text-blue-600 hover:bg-blue-500 hover:text-white"
-                }`}>
-                Get Resume
+            <a href={resumePdf} download="Chirag_Mandyal_Resume.pdf">
+              <button className="rounded-lg border border-zinc-300 bg-transparent px-8 py-3 font-semibold text-zinc-700 transition-all hover:-translate-y-0.5 hover:border-amber-500 hover:text-amber-600 dark:border-zinc-700 dark:text-zinc-200 dark:hover:border-amber-400 dark:hover:text-amber-400">
+                Get resume
               </button>
             </a>
           </motion.div>
+
+          {/* Stats */}
+          <motion.div
+            className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            {stats.map((s) => (
+              <div key={s.label}>
+                <p className="font-mono text-2xl font-bold text-amber-600 dark:text-amber-400">
+                  {s.value}
+                </p>
+                <p className="mt-1 text-xs font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-500">
+                  {s.label}
+                </p>
+              </div>
+            ))}
+          </motion.div>
         </div>
-        {/* Image */}
-        <div className="flex basis-3/5 justify-center md:z-10 md:ml-40 md:mt-16 md:justify-items-end">
-          <img alt="home-pageGraphic" src={HomePageGraphic} />
-        </div>
-      </motion.div>
-      {isAboveMediumScreens && (
-        <div className={`h-[150px] w-full ${theme === "dark" ? "bg-gray-800" : "bg-gradient-to-r from-blue-100 to-purple-100"
-          } py-10`}>
-          <div className="mx-auto w-5/6">
-            <div className="flex w-3/5 items-center justify-between gap-8"></div>
+
+        {/* Terminal card */}
+        <motion.div
+          className="w-full max-w-md md:basis-2/5"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <div className="overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-xl dark:border-zinc-800 dark:bg-[#13161c]">
+            <div className="flex items-center gap-2 border-b border-zinc-200 bg-zinc-100 px-4 py-3 dark:border-zinc-800 dark:bg-zinc-900">
+              <span className="h-3 w-3 rounded-full bg-red-400" />
+              <span className="h-3 w-3 rounded-full bg-yellow-400" />
+              <span className="h-3 w-3 rounded-full bg-green-400" />
+              <span className="ml-3 font-mono text-xs text-zinc-500">
+                fleet-monitor — zsh
+              </span>
+            </div>
+            <div className="space-y-2.5 p-5 font-mono text-[13px] leading-relaxed">
+              <p className="text-zinc-500">
+                <span className="text-emerald-600 dark:text-emerald-400">$</span>{" "}
+                fleet status --live
+              </p>
+              <p>
+                <span className="text-emerald-600 dark:text-emerald-400">✓</span>{" "}
+                <span className="text-zinc-800 dark:text-zinc-200">64,213 links online</span>{" "}
+                <span className="text-zinc-500">· 99.97% availability</span>
+              </p>
+              <p className="text-zinc-500">
+                devices&nbsp;&nbsp;&nbsp;<span className="text-zinc-800 dark:text-zinc-200">100,482 provisioned</span>
+              </p>
+              <p className="text-zinc-500">
+                telemetry&nbsp;<span className="text-zinc-800 dark:text-zinc-200">TimescaleDB · MongoDB</span>
+              </p>
+              <p className="text-zinc-500">
+                access&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-zinc-800 dark:text-zinc-200">7-role RBAC enforced</span>
+              </p>
+              <p className="text-zinc-500">
+                stack&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-amber-600 dark:text-amber-400">React · NestJS · TypeScript</span>
+              </p>
+              <p className="text-zinc-500">
+                <span className="text-emerald-600 dark:text-emerald-400">$</span>{" "}
+                <span className="animate-pulse">▊</span>
+              </p>
+            </div>
           </div>
-        </div>
-      )}
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

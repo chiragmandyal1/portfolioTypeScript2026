@@ -5,7 +5,6 @@ import { useState } from "react";
 import Link from "./Link";
 import ThemeToggle from "@/common/ThemeToggle";
 import SearchBar from "@/common/SearchBar";
-import { useTheme } from "@/context/ThemeContext";
 
 type Props = {
   isTopOfPage: boolean;
@@ -13,101 +12,94 @@ type Props = {
   setSelectedPage: (value: SelectedPage) => void;
 };
 
+const pages = ["About Me", "Skills", "Education", "Experience", "Projects"];
+
 const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
   const flexBetween = "flex items-center justify-between";
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
   const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
-  const { theme } = useTheme();
-  const navbarBackground = isTopOfPage
-    ? ""
-    : theme === "dark"
-      ? "bg-gray-900 drop-shadow-lg"
-      : "bg-white/95 backdrop-blur-sm drop-shadow-lg border-b border-blue-200";
+
   return (
     <nav className="sticky top-0 z-30 w-full transition-all duration-300">
-      {/* parent box of the navbar*/}
       <div
-        className={`${navbarBackground} ${flexBetween} w-full py-6 transition-colors duration-300`}
+        className={`${flexBetween} w-full border-b py-4 backdrop-blur-md transition-colors duration-300 ${isTopOfPage
+          ? "border-transparent bg-stone-50/70 dark:bg-[#0c0e12]/70"
+          : "border-zinc-200 bg-stone-50/85 shadow-sm dark:border-zinc-800 dark:bg-[#0c0e12]/85"
+          }`}
       >
-        {/* box that contains both the logo and the other options of the navbar*/}
         <div className={`${flexBetween} mx-auto w-5/6`}>
           <div className={`${flexBetween} w-full gap-16`}>
-            {/*left logo side of the navbar*/}
-            <div className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity">
-              <span className="text-2xl font-bold text-yellow-400">&lt;</span>
+            {/* Logo */}
+            <a href="#aboutme" className="flex cursor-pointer items-center gap-2 transition-opacity hover:opacity-80">
+              <span className="font-mono text-2xl font-bold text-amber-500 dark:text-amber-400">&lt;</span>
               <div>
-                <h1 className="text-lg font-bold leading-none">CHIRAG</h1>
-                <p className="text-xs font-semibold text-yellow-400">MANDYAL</p>
+                <h1 className="text-lg font-extrabold leading-none tracking-tight">CHIRAG</h1>
+                <p className="font-mono text-[10px] font-semibold tracking-[0.25em] text-amber-600 dark:text-amber-400">
+                  MANDYAL
+                </p>
               </div>
-              <span className="text-2xl font-bold text-yellow-400">/&gt;</span>
-            </div>
-            {/*Right other side of the navbar*/}
+              <span className="font-mono text-2xl font-bold text-amber-500 dark:text-amber-400">/&gt;</span>
+            </a>
+
+            {/* Desktop menu */}
             {isAboveMediumScreens ? (
               <div className={`${flexBetween} w-full`}>
-                {/*inner right side*/}
-                <div className={`${flexBetween} gap-8 text-sm`}></div>
-                {/*Outer right side*/}
-                <div className={`${flexBetween} gap-8 text-lg`}>
-                  <Link
-                    page="About Me"
-                    selectedPage={selectedPage}
-                    setSelectedPage={setSelectedPage}
-                  />
-
-                  <Link
-                    page="Skills"
-                    selectedPage={selectedPage}
-                    setSelectedPage={setSelectedPage}
-                  />
-
-                  <Link
-                    page="Projects"
-                    selectedPage={selectedPage}
-                    setSelectedPage={setSelectedPage}
-                  />
+                <div />
+                <div className={`${flexBetween} gap-8`}>
+                  {pages.map((page) => (
+                    <Link
+                      key={page}
+                      page={page}
+                      selectedPage={selectedPage}
+                      setSelectedPage={setSelectedPage}
+                    />
+                  ))}
+                  <a
+                    href="#contact"
+                    className="rounded-lg border border-amber-500 px-4 py-1.5 text-sm font-semibold text-amber-600 transition-colors hover:bg-amber-500 hover:text-zinc-950 dark:border-amber-400 dark:text-amber-400 dark:hover:bg-amber-400"
+                  >
+                    Hire me
+                  </a>
                   <SearchBar />
                   <ThemeToggle />
                 </div>
               </div>
             ) : (
               <button
-                className="rounded-full bg-secondary-500 p-2"
+                className="rounded-lg border border-zinc-300 p-2 dark:border-zinc-700"
                 onClick={() => setIsMenuToggled(!isMenuToggled)}
+                aria-label="Open menu"
               >
-                <Bars3Icon className="h-6 w-6 text-white" />
+                <Bars3Icon className="h-6 w-6" />
               </button>
             )}
           </div>
         </div>
       </div>
-      {/*Mobile Menu Modal */}
+
+      {/* Mobile menu */}
       {!isAboveMediumScreens && isMenuToggled && (
-        <div className="fixed bottom-0 right-0 z-40 h-full w-[300px] bg-primary-100 drop-shadow-xl">
-          {/** Close icon */}
-          <div className="flex justify-end p-12">
-            <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
-              <XMarkIcon className="h-6 w-6 text-gray-400" />
+        <div className="fixed bottom-0 right-0 z-40 h-full w-[300px] border-l border-zinc-200 bg-white drop-shadow-xl dark:border-zinc-800 dark:bg-[#0c0e12]">
+          <div className="flex justify-end p-8">
+            <button onClick={() => setIsMenuToggled(!isMenuToggled)} aria-label="Close menu">
+              <XMarkIcon className="h-6 w-6 text-zinc-400" />
             </button>
           </div>
-          {/* Menu Items  */}
-          <div className={`ml-[33%] flex flex-col gap-10 text-2xl`}>
-            <Link
-              page="About Me"
-              selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
-            />
-
-            <Link
-              page="Skills"
-              selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
-            />
-
-            <Link
-              page="Projects"
-              selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
-            />
+          <div
+            className="ml-[20%] flex flex-col gap-8 text-xl"
+            onClick={() => setIsMenuToggled(false)}
+          >
+            {pages.map((page) => (
+              <Link
+                key={page}
+                page={page}
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+              />
+            ))}
+          </div>
+          <div className="ml-[20%] mt-10">
+            <ThemeToggle />
           </div>
         </div>
       )}

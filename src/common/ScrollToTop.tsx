@@ -1,23 +1,18 @@
 import { useScrollToTop } from "@/hooks/useScrollToTop";
-import { useTheme } from "@/context/ThemeContext";
 import { ArrowUp } from "lucide-react";
 
 export default function ScrollToTop() {
     const { isVisible, scrollToTop } = useScrollToTop();
-    const { theme } = useTheme();
 
     if (!isVisible) return null;
 
     return (
         <button
             onClick={scrollToTop}
-            className={`fixed bottom-8 right-8 z-50 p-3 rounded-full transition-all duration-300 hover:scale-110 ${theme === "dark"
-                    ? "bg-yellow-400 hover:bg-yellow-500 text-black"
-                    : "bg-yellow-300 hover:bg-yellow-400 text-black"
-                } shadow-lg`}
+            className="fixed bottom-8 right-8 z-50 rounded-full border border-zinc-200 bg-white p-3 text-zinc-700 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-amber-500 hover:text-amber-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:border-amber-400 dark:hover:text-amber-400"
             aria-label="Scroll to top"
         >
-            <ArrowUp size={24} />
+            <ArrowUp size={22} />
         </button>
     );
 }

@@ -1,6 +1,5 @@
 import { SelectedPage } from "@/common/types";
 import HText from "@/common/HText";
-import { useTheme } from "@/context/ThemeContext";
 import { motion } from "framer-motion";
 import { GraduationCap } from "lucide-react";
 
@@ -9,15 +8,13 @@ interface Props {
 }
 
 export default function Education({ setSelectedPage }: Props) {
-    const { theme } = useTheme();
-
     const educationData = [
         {
             institution: "Uttaranchal University",
             location: "Dehradun, Uttarakhand",
-            degree: "B.Tech in Computer Science Engineering",
+            degree: "B.Tech in Computer Science & Engineering",
             graduation: "April 2022",
-            gpa: "8.4+ GPA (Summa Cum Laude)",
+            gpa: "CGPA: 8.4/10",
             highlights: ["Full Stack Development", "Data Structures & Algorithms", "Database Management"],
         },
     ];
@@ -25,11 +22,10 @@ export default function Education({ setSelectedPage }: Props) {
     return (
         <section
             id="education"
-            className={`mx-auto w-full px-4 py-20 ${theme === "dark" ? "bg-gray-800" : "bg-gradient-to-b from-gray-100 to-blue-50"
-                }`}
-            onMouseEnter={() => setSelectedPage(SelectedPage.Skills)}
+            className="w-full bg-white py-24 dark:bg-[#0f1116]"
+            onMouseEnter={() => setSelectedPage(SelectedPage.Education)}
         >
-            <div className="max-w-6xl mx-auto">
+            <div className="mx-auto w-5/6 max-w-6xl">
                 <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
@@ -37,10 +33,10 @@ export default function Education({ setSelectedPage }: Props) {
                     viewport={{ once: true }}
                 >
                     <HText>Education</HText>
-                    <p className="my-5 text-sm">My academic background</p>
+                    <p className="my-5 text-zinc-500 dark:text-zinc-400">My academic background</p>
                 </motion.div>
 
-                <div className="mt-12 space-y-6">
+                <div className="mt-8 space-y-6">
                     {educationData.map((edu, index) => (
                         <motion.div
                             key={index}
@@ -48,39 +44,33 @@ export default function Education({ setSelectedPage }: Props) {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
                             viewport={{ once: true }}
-                            className={`p-6 rounded-lg border shadow-md hover:shadow-xl transition-all ${theme === "dark"
-                                ? "bg-gray-900 border-gray-700"
-                                : "bg-white border-blue-200 hover:border-blue-400"
-                                }`}
+                            className="rounded-xl border border-zinc-200 bg-stone-50 p-6 shadow-sm transition-all hover:border-amber-500 hover:shadow-md dark:border-zinc-800 dark:bg-[#13161c] dark:hover:border-amber-400"
                         >
                             <div className="flex gap-4">
-                                <div className="text-yellow-400 mt-1 flex-shrink-0">
+                                <div className="mt-1 flex-shrink-0 text-amber-600 dark:text-amber-400">
                                     <GraduationCap size={28} />
                                 </div>
                                 <div className="flex-grow">
-                                    <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
+                                    <div className="mb-2 flex flex-col md:flex-row md:items-start md:justify-between">
                                         <div>
                                             <h3 className="text-xl font-bold">{edu.degree}</h3>
-                                            <p className="text-yellow-400 font-semibold">
+                                            <p className="font-semibold text-amber-600 dark:text-amber-400">
                                                 {edu.institution}
                                             </p>
-                                            <p className="text-sm text-gray-500">{edu.location}</p>
+                                            <p className="text-sm text-zinc-500">{edu.location}</p>
                                         </div>
-                                        <div className="text-right mt-2 md:mt-0">
-                                            <p className="text-sm font-semibold text-gray-600 dark:text-gray-400">
+                                        <div className="mt-2 md:mt-0 md:text-right">
+                                            <p className="font-mono text-sm text-zinc-500">
                                                 {edu.graduation}
                                             </p>
-                                            <p className="text-yellow-400 font-bold">{edu.gpa}</p>
+                                            <p className="font-mono font-bold text-amber-600 dark:text-amber-400">{edu.gpa}</p>
                                         </div>
                                     </div>
-                                    <div className="flex flex-wrap gap-2 mt-4">
+                                    <div className="mt-4 flex flex-wrap gap-2">
                                         {edu.highlights.map((highlight) => (
                                             <span
                                                 key={highlight}
-                                                className={`px-3 py-1 text-xs font-semibold rounded-full ${theme === "dark"
-                                                        ? "bg-yellow-400 text-black"
-                                                        : "bg-blue-500 text-white"
-                                                    }`}
+                                                className="rounded-full border border-zinc-300 px-3 py-1 font-mono text-xs font-medium text-zinc-600 dark:border-zinc-700 dark:text-zinc-300"
                                             >
                                                 {highlight}
                                             </span>

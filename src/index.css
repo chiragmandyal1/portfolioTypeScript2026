@@ -1,35 +1,60 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Montserrat:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 html,
-body,
-#root,
-.app {
+body {
   height: 100%;
   width: 100%;
-  font-family: "DM Sans" sans-serif;
 }
 
-/* Light mode styles */
+#root,
+.app {
+  min-height: 100%;
+  width: 100%;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+/* Light mode */
 body {
-  @apply bg-gray-50 text-gray-900;
+  @apply bg-stone-50 text-zinc-800;
 }
 
-/* Dark mode styles */
+/* Dark mode */
 html.dark {
   color-scheme: dark;
 }
 
 html.dark body {
-  @apply bg-gray-900 text-white;
+  background-color: #0c0e12;
+  @apply text-zinc-200;
+}
+
+::selection {
+  @apply bg-amber-400/30;
+}
+
+/* Subtle blueprint grid behind hero */
+.bg-grid {
+  background-image: linear-gradient(
+      to right,
+      rgba(120, 120, 130, 0.07) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(120, 120, 130, 0.07) 1px, transparent 1px);
+  background-size: 42px 42px;
 }
 
 html.dark input,
 html.dark textarea {
-  @apply border-gray-600 bg-gray-700 text-white;
+  @apply border-zinc-700 bg-zinc-900 text-white;
+}
+
+/* Keep anchored sections clear of the sticky navbar */
+section {
+  scroll-margin-top: 90px;
 }
 
 /* Smooth scroll animation */
@@ -49,12 +74,16 @@ html.dark textarea {
 }
 
 html.dark ::-webkit-scrollbar-track {
-  background: #1a1a1a;
+  background: #0c0e12;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #fbbf24;
+  background: #d4d4d8;
   border-radius: 5px;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #3f3f46;
 }
 
 ::-webkit-scrollbar-thumb:hover {

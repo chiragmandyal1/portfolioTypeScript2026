@@ -1,6 +1,5 @@
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import { SelectedPage } from "./types";
-import { useTheme } from "@/context/ThemeContext";
 
 type Props = {
   children: React.ReactNode;
@@ -8,15 +7,12 @@ type Props = {
 };
 
 const ActionButton = ({ children, setSelectedPage }: Props) => {
-  const { theme } = useTheme();
   return (
     <AnchorLink
-      className={`rounded-md px-10 py-2 font-semibold transition-all shadow-md hover:shadow-lg ${theme === "dark"
-          ? "bg-yellow-400 text-black hover:bg-yellow-500"
-          : "bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700"
-        }`}
+      className="rounded-lg bg-amber-500 px-8 py-3 font-semibold text-zinc-950 shadow-md transition-all hover:-translate-y-0.5 hover:bg-amber-400 hover:shadow-lg dark:bg-amber-400 dark:hover:bg-amber-300"
+      offset={90}
       onClick={() => setSelectedPage(SelectedPage.Footer)}
-      href={`#${SelectedPage.Footer}`}
+      href="#contact"
     >
       {children}
     </AnchorLink>

@@ -1,31 +1,31 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-  darkMode: "class", // Enable dark mode with class strategy
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
-        "gray-20": "#F8F4EB", //footer bg
-        "primary-100": "#F5DF4E", //main
-        "primary-300": "#017DC3", //hover nav bar options
-        "primary-500": "#1C1F23", // hover
-        "secondary-linkedin": "#0A66C2", // logo hover color
-        "secondary-whatsapp": "#00E676", // logo hover color
-        "secondary-mail": "#DDA605", // logo hover color
-        "secondary-github": "#FE0000", // logo hover color
-        "secondary-500": "#D3D3D3",
+        accent: {
+          300: "#fcd34d",
+          400: "#fbbf24",
+          500: "#f59e0b",
+          600: "#d97706",
+        },
+        surface: {
+          light: "#fafaf9",
+          dark: "#0c0e12",
+          card: "#13161c",
+        },
+        // legacy tokens still referenced in a few places
+        "primary-300": "#f59e0b",
+        "primary-500": "#fbbf24",
+        "secondary-500": "#27272a",
       },
-      backgroundImage: (theme) => ({
-        "gradient-yellowred":
-          "linear-gradient(90deg, #FF616A 0%, #FFC837 100%)",
-        "mobile-home": "url('./assets/HomePageGraphic.png')",
-      }),
       fontFamily: {
-        dmsans: ["DM Sans", "sans-serif"],
-        montserrat: ["Montserrat", "sans-serif"],
-      },
-      content: {
-        logotext: "url('./assets/LogoText.png')",
+        sans: ["Inter", "system-ui", "sans-serif"],
+        mono: ["JetBrains Mono", "ui-monospace", "monospace"],
+        montserrat: ["Inter", "system-ui", "sans-serif"],
+        dmsans: ["Inter", "system-ui", "sans-serif"],
       },
     },
     screens: {

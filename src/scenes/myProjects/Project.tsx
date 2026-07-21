@@ -1,4 +1,3 @@
-import { useTheme } from "@/context/ThemeContext";
 import { Github, ExternalLink } from "lucide-react";
 
 type Props = {
@@ -10,80 +9,57 @@ type Props = {
   technologies?: string[];
 };
 
-function Project({
-  name,
-  link,
-  description,
-  image,
-  github,
-  technologies,
-}: Props) {
-  const { theme } = useTheme();
-
+function Project({ name, link, description, image, github, technologies }: Props) {
   return (
-    <li className="relative mx-5 inline-block">
-      <div
-        className={`group h-[380px] w-[480px] rounded-lg overflow-hidden transition-all duration-300 hover:shadow-2xl ${theme === "dark"
-          ? "bg-gray-800 border border-gray-700"
-          : "bg-white border border-blue-200 hover:border-blue-400 shadow-md"
-          }`}
-      >
+    <div className="group flex h-full flex-col overflow-hidden rounded-xl border border-zinc-200 bg-stone-50 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-amber-500 hover:shadow-lg dark:border-zinc-800 dark:bg-[#13161c] dark:hover:border-amber-400">
+      <div className="overflow-hidden">
         <img
           alt={name}
           src={image}
-          className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+          className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
-        <div className="p-5 flex flex-col h-[200px]">
-          <h3 className="text-xl font-bold mb-2">{name}</h3>
-          <p className="text-sm flex-grow mb-3 leading-relaxed text-gray-600 dark:text-gray-300 line-clamp-3">
-            {description || "Project description"}
-          </p>
-          {technologies && technologies.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-3">
-              {technologies.slice(0, 3).map((tech) => (
-                <span
-                  key={tech}
-                  className={`px-2 py-1 text-xs rounded-full font-semibold ${theme === "dark"
-                    ? "bg-yellow-400 text-black"
-                    : "bg-blue-500 text-white"
-                    }`}
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          )}
-          <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            {link && (
-              <a
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`flex items-center gap-1 px-3 py-1 rounded-lg transition-colors text-sm font-semibold ${theme === "dark"
-                  ? "bg-yellow-400 text-black hover:bg-yellow-500"
-                  : "bg-blue-500 text-white hover:bg-blue-600"
-                  }`}
+      </div>
+      <div className="flex flex-grow flex-col p-5">
+        <h3 className="mb-2 text-xl font-bold">{name}</h3>
+        <p className="mb-4 flex-grow text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+          {description || "Project description"}
+        </p>
+        {technologies && technologies.length > 0 && (
+          <div className="mb-4 flex flex-wrap gap-2">
+            {technologies.map((tech) => (
+              <span
+                key={tech}
+                className="rounded-full border border-zinc-300 px-2.5 py-0.5 font-mono text-xs font-medium text-zinc-600 dark:border-zinc-700 dark:text-zinc-300"
               >
-                <ExternalLink size={16} /> Demo
-              </a>
-            )}
-            {github && (
-              <a
-                href={github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`flex items-center gap-1 px-3 py-1 border-2 rounded-lg transition-colors text-sm font-semibold ${theme === "dark"
-                  ? "border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black"
-                  : "border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white"
-                  }`}
-              >
-                <Github size={16} /> Code
-              </a>
-            )}
+                {tech}
+              </span>
+            ))}
           </div>
+        )}
+        <div className="flex gap-3">
+          {link && (
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 rounded-lg bg-amber-500 px-3.5 py-1.5 text-sm font-semibold text-zinc-950 transition-colors hover:bg-amber-400 dark:bg-amber-400 dark:hover:bg-amber-300"
+            >
+              <ExternalLink size={15} /> Demo
+            </a>
+          )}
+          {github && (
+            <a
+              href={github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 rounded-lg border border-zinc-300 px-3.5 py-1.5 text-sm font-semibold text-zinc-700 transition-colors hover:border-amber-500 hover:text-amber-600 dark:border-zinc-700 dark:text-zinc-200 dark:hover:border-amber-400 dark:hover:text-amber-400"
+            >
+              <Github size={15} /> Code
+            </a>
+          )}
         </div>
       </div>
-    </li>
+    </div>
   );
 }
 
