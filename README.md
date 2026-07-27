@@ -2,7 +2,7 @@
 
 Personal portfolio site. Full Stack Developer working across React, NestJS, and TypeScript.
 
-**Live:** https://portfolio-typescript2026.vercel.app
+**Live:** https://chiragmandyal.vercel.app/
 
 ## Stack
 
