@@ -35,7 +35,7 @@ export default function Experience({ setSelectedPage }: Props) {
         {
             year: "01/2022 - 04/2022",
             role: "Frontend Intern",
-            company: "Crossscope",
+            company: "Crosscope",
             description:
                 "Worked on healthcare technology platform with AI-driven solutions. Developed UI modules including dashboard, authentication, and account management. Integrated frontend with REST APIs and built responsive components.",
             skills: ["React", "Material UI", "Formik", "Axios"],

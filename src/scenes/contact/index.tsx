@@ -3,7 +3,6 @@ import axios from "axios";
 import { useState } from "react";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-import { VscGithub } from "react-icons/vsc";
 import { GrLinkedin } from "react-icons/gr";
 import HText from "@/common/HText";
 
@@ -105,11 +104,6 @@ export default function ContactForm() {
                                         href: "https://www.linkedin.com/in/chirag-mandyal-543575152/",
                                         icon: <GrLinkedin className="h-5 w-5" />,
                                         label: "LinkedIn",
-                                    },
-                                    {
-                                        href: "https://github.com/chiragmandyal1",
-                                        icon: <VscGithub className="h-5 w-5" />,
-                                        label: "GitHub",
                                     },
                                     {
                                         href: "https://wa.me/918219600177",

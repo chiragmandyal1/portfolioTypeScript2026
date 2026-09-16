@@ -1,5 +1,4 @@
 import image1 from "@/assets/image1.png";
-import image2 from "@/assets/image2.png";
 import HText from "@/common/HText";
 import { ProjectType, SelectedPage } from "@/common/types";
 import { motion } from "framer-motion";
@@ -15,16 +14,6 @@ const projects: Array<ProjectType> = [
       "A secure React.js and Firebase project for storing and displaying user data with authentication and cloud storage.",
     image: image1,
     technologies: ["React", "Firebase", "Firestore", "Bootstrap"],
-    featured: true,
-  },
-  {
-    name: "NewsApp",
-    link: "https://github.com/WhySoOpKratos/News-App",
-    github: "https://github.com/WhySoOpKratos/News-App",
-    description:
-      "A React news application that fetches and displays latest news headlines in a user-friendly interface.",
-    image: image2,
-    technologies: ["React", "Axios", "REST API"],
     featured: true,
   },
 ];

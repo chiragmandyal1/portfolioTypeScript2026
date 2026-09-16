@@ -7,7 +7,7 @@ const stats = [
   { value: "3+", label: "years experience" },
   { value: "100K+", label: "devices tracked" },
   { value: "64K+", label: "active links" },
-  { value: "241", label: "enterprise clients" },
+  { value: "241", label: "enterprise customers served" },
 ];
 
 const Home = ({ setSelectedPage }: { setSelectedPage: (value: SelectedPage) => void }) => {
@@ -122,11 +122,11 @@ const Home = ({ setSelectedPage }: { setSelectedPage: (value: SelectedPage) => v
               </p>
               <p>
                 <span className="text-emerald-600 dark:text-emerald-400">✓</span>{" "}
-                <span className="text-zinc-800 dark:text-zinc-200">64,213 links online</span>{" "}
+                <span className="text-zinc-800 dark:text-zinc-200">64K+ links online</span>{" "}
                 <span className="text-zinc-500">· 99.97% availability</span>
               </p>
               <p className="text-zinc-500">
-                devices&nbsp;&nbsp;&nbsp;<span className="text-zinc-800 dark:text-zinc-200">100,482 provisioned</span>
+                devices&nbsp;&nbsp;&nbsp;<span className="text-zinc-800 dark:text-zinc-200">100K+ provisioned</span>
               </p>
               <p className="text-zinc-500">
                 telemetry&nbsp;<span className="text-zinc-800 dark:text-zinc-200">TimescaleDB · MongoDB</span>
