@@ -1,4 +1,5 @@
 import image1 from "@/assets/image1.png";
+import sweepYoutube from "@/assets/sweepYoutube.png";
 import HText from "@/common/HText";
 import { ProjectType, SelectedPage } from "@/common/types";
 import { motion } from "framer-motion";
@@ -7,6 +8,15 @@ import { useSearch } from "@/context/SearchContext";
 import { useState } from "react";
 
 const projects: Array<ProjectType> = [
+  {
+    name: "Sweep for YouTube",
+    github: "https://github.com/chiragmandyal1/sweep-youtube",
+    description:
+      "Chrome extension that bulk-deletes YouTube playlists, removes videos from a playlist and bulk-unsubscribes from channels. Drives YouTube's own UI to avoid the Data API's 200-deletes-a-day quota, with smart-select filters, auto-stop on failures and no data leaving the browser.",
+    image: sweepYoutube,
+    technologies: ["JavaScript", "Chrome Extension", "Manifest V3"],
+    featured: true,
+  },
   {
     name: "React-Firebase",
     link: "https://react-wecodeforyou.web.app/",
