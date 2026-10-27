@@ -1,4 +1,5 @@
 import image1 from "@/assets/image1.png";
+import solarKb from "@/assets/solarKb.jpg";
 import sweepYoutube from "@/assets/sweepYoutube.png";
 import HText from "@/common/HText";
 import { ProjectType, SelectedPage } from "@/common/types";
@@ -8,6 +9,16 @@ import { useSearch } from "@/context/SearchContext";
 import { useState } from "react";
 
 const projects: Array<ProjectType> = [
+  {
+    name: "Solar-kb",
+    link: "https://solarkb.com",
+    github: "https://github.com/chiragmandyal1/solar-kb",
+    description:
+      "Ask the solar system: a RAG chatbot that answers only from ~270 NASA pages, cites its sources and refuses off-topic questions (30/30 on its own test set). A 3D solar system flies to the planet or moon in each answer. NestJS API, Postgres + pgvector, Groq with a Claude fallback, Google sign-in with daily limits, Docker and Caddy HTTPS.",
+    image: solarKb,
+    technologies: ["React", "Three.js", "NestJS", "PostgreSQL", "RAG"],
+    featured: true,
+  },
   {
     name: "Sweep for YouTube",
     github: "https://github.com/chiragmandyal1/sweep-youtube",
