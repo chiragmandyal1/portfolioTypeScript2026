@@ -6,7 +6,8 @@ import { ProjectType, SelectedPage } from "@/common/types";
 import { motion } from "framer-motion";
 import Project from "./Project";
 import { useSearch } from "@/context/SearchContext";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const projects: Array<ProjectType> = [
   {
@@ -46,6 +47,12 @@ type Props = {
 function OurProjects({ setSelectedPage }: Props) {
   const { searchQuery } = useSearch();
   const [selectedTech, setSelectedTech] = useState<string | null>(null);
+  const scroller = useRef<HTMLDivElement>(null);
+  // one card plus its gap per click
+  const scrollBy = (dir: 1 | -1) => {
+    const el = scroller.current;
+    if (el) el.scrollBy({ left: dir * (el.clientWidth * 0.5 + 12), behavior: "smooth" });
+  };
 
   const allTechnologies = Array.from(
     new Set(projects.flatMap((p) => p.technologies || []))
@@ -104,12 +111,31 @@ function OurProjects({ setSelectedPage }: Props) {
           </div>
         </motion.div>
 
-        {/* Projects grid */}
-        <div className="mx-auto mt-6 w-5/6 max-w-6xl">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        {/* Projects: horizontal scroll, one card snaps into place at a time */}
+        <div className="relative mx-auto mt-6 w-5/6 max-w-6xl">
+          {filteredProjects.length > 1 && (
+            <div className="mb-3 flex justify-end gap-2">
+              {([-1, 1] as const).map((dir) => (
+                <button
+                  key={dir}
+                  type="button"
+                  aria-label={dir === -1 ? "Scroll projects left" : "Scroll projects right"}
+                  onClick={() => scrollBy(dir)}
+                  className="rounded-full border border-zinc-300 p-2 text-zinc-600 transition-colors hover:border-amber-500 hover:text-amber-600 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-amber-400 dark:hover:text-amber-400"
+                >
+                  {dir === -1 ? <ChevronLeft size={18} /> : <ChevronRight size={18} />}
+                </button>
+              ))}
+            </div>
+          )}
+          <div
+            ref={scroller}
+            className="flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-4"
+          >
             {filteredProjects.map((item: ProjectType, index) => (
               <motion.div
                 key={`${item.name}-${index}`}
+                className="w-[85%] shrink-0 snap-start sm:w-[calc(50%-12px)]"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
