@@ -1,3 +1,4 @@
+import image1 from "@/assets/image1.png";
 import fleetPulse from "@/assets/fleetPulse.jpg";
 import solarKb from "@/assets/solarKb.jpg";
 import sweepYoutube from "@/assets/sweepYoutube.png";
@@ -37,6 +38,15 @@ const projects: Array<ProjectType> = [
       "Chrome extension that bulk-deletes YouTube playlists, removes videos from a playlist and bulk-unsubscribes from channels. Drives YouTube's own UI to avoid the Data API's 200-deletes-a-day quota, with smart-select filters, auto-stop on failures and no data leaving the browser.",
     image: sweepYoutube,
     technologies: ["JavaScript", "Chrome Extension", "Manifest V3"],
+    featured: true,
+  },
+  {
+    name: "React-Firebase",
+    link: "https://react-wecodeforyou.web.app/",
+    description:
+      "A secure React.js and Firebase project for storing and displaying user data with authentication and cloud storage.",
+    image: image1,
+    technologies: ["React", "Firebase", "Firestore", "Bootstrap"],
     featured: true,
   },
 ];
