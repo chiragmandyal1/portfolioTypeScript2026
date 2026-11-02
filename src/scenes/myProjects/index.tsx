@@ -23,6 +23,7 @@ const projects: Array<ProjectType> = [
   {
     name: "Fleet Pulse",
     link: "https://fleetpulse.solarkb.com",
+    github: "https://github.com/chiragmandyal1/fleet-pulse",
     description:
       "An open-source device-monitoring dashboard for satellite and cellular links, built on entirely synthetic data. 300 simulated devices report every 5 seconds into TimescaleDB (hypertable, continuous aggregate, 30-day retention) with device and customer records in MongoDB. NestJS API with JWT and three roles, React + MUI dashboard with a live map, outage lists and CSV reports. Docker Compose and Caddy HTTPS.",
     image: fleetPulse,
