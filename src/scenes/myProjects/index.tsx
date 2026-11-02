@@ -1,4 +1,4 @@
-import image1 from "@/assets/image1.png";
+import fleetPulse from "@/assets/fleetPulse.jpg";
 import solarKb from "@/assets/solarKb.jpg";
 import sweepYoutube from "@/assets/sweepYoutube.png";
 import HText from "@/common/HText";
@@ -21,21 +21,21 @@ const projects: Array<ProjectType> = [
     featured: true,
   },
   {
+    name: "Fleet Pulse",
+    link: "https://fleetpulse.solarkb.com",
+    description:
+      "An open-source device-monitoring dashboard for satellite and cellular links, built on entirely synthetic data. 300 simulated devices report every 5 seconds into TimescaleDB (hypertable, continuous aggregate, 30-day retention) with device and customer records in MongoDB. NestJS API with JWT and three roles, React + MUI dashboard with a live map, outage lists and CSV reports. Docker Compose and Caddy HTTPS.",
+    image: fleetPulse,
+    technologies: ["React", "NestJS", "TimescaleDB", "MongoDB"],
+    featured: true,
+  },
+  {
     name: "Sweep for YouTube",
     github: "https://github.com/chiragmandyal1/sweep-youtube",
     description:
       "Chrome extension that bulk-deletes YouTube playlists, removes videos from a playlist and bulk-unsubscribes from channels. Drives YouTube's own UI to avoid the Data API's 200-deletes-a-day quota, with smart-select filters, auto-stop on failures and no data leaving the browser.",
     image: sweepYoutube,
     technologies: ["JavaScript", "Chrome Extension", "Manifest V3"],
-    featured: true,
-  },
-  {
-    name: "React-Firebase",
-    link: "https://react-wecodeforyou.web.app/",
-    description:
-      "A secure React.js and Firebase project for storing and displaying user data with authentication and cloud storage.",
-    image: image1,
-    technologies: ["React", "Firebase", "Firestore", "Bootstrap"],
     featured: true,
   },
 ];
